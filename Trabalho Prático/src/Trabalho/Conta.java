@@ -6,7 +6,7 @@ public abstract class Conta<T extends Conta<?>> implements Operacoes {
 	private Agencia agencia;
 	private double saldo; 
 	private int mesesDeconta;
-	private static int incremento = 0;
+	private static int incremento = 1;
 	private String[] movimentacoes = new String[10];
 	private int contador;
 	public Conta(Cliente cliente,  Agencia agencia,double saldo) {
@@ -81,11 +81,11 @@ public abstract class Conta<T extends Conta<?>> implements Operacoes {
 	}
 	public void contadorDeCodigo() {
 		if(Conta.getIncremento()>0 && 9>=Conta.getIncremento() ) {
-			this.codigo = String.format("%03d", Conta.getIncremento());
+			this.codigo = String.format("%04d", Conta.getIncremento());
 		}else if(Conta.getIncremento()>9 && 99>=Conta.getIncremento()) {
-			this.codigo = String.format("%02d", Conta.getIncremento());;
+			this.codigo = String.format("%03d", Conta.getIncremento());;
 		}else if(Conta.getIncremento()>99 && 999>=Conta.getIncremento()) {
-			this.codigo = String.format("%01d", Conta.getIncremento());
+			this.codigo = String.format("%02d", Conta.getIncremento());
 		}else {
 			this.codigo = ""+Conta.getIncremento();
 		}

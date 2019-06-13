@@ -166,7 +166,9 @@ public class Corrente extends Conta {
 	public String extrato() {
 		String s = "#EXTRATO \n";
 		for (int i = 0; i < this.getMovimentacoes().length; i++) {
+			if(this.getMovimentacoes()[i]!= null) {
 			s += this.getMovimentacoes()[i]+"\n";
+			}
 		}
 		s += "SALDO ATUAL: "+this.getSaldo()+"\n";
 		s += "SALDO DEVEDOR: "+this.getDebito()+"\n";
