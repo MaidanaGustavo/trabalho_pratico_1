@@ -26,6 +26,7 @@ public class Banco {
  	Scanner tc = new Scanner(System.in);
  	Agencia online  = new Agencia();
 	public void movimentacoes() throws SaldoInsuficienteException, OperacaoNaoPossivelException, SemCargasException, ValorNegativoException, LimitedaContaException,ValorAcimadoPermitidoException, EmprestimoJaRealizadoException {
+		this.agencias.add(this.online);
 		String n;
 		System.out.println(this.instruncoes());
 		n = tc.nextLine();
@@ -169,7 +170,6 @@ public class Banco {
 					System.out.print("Digite o numero da conta: " );
 					String numeroDaConta = tc.nextLine();
 					Conta<?> contasAgencia = this.acharConta(numerodaAgencia,numeroDaConta);
-					System.out.println(contasAgencia);
 							try {
 								System.out.print("Digite o valor: ");
 									double valor = tc.nextDouble();
