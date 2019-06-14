@@ -37,25 +37,35 @@ public class Banco {
 					for (Conta<?> conta : todasAsContas) {
 						conta.viradaDeMes();
 					}	
-				System.out.println("Mês virado com sucesso!");
+				System.out.println("MÃªs virado com sucesso!");
 					break;
 				case "2":
+					
+					System.out.print("Digite o nome da agencia: ");
 					String nomeAgencia = tc.nextLine(); 
+					System.out.print("Digite o numero da agencia");
 					String numeroAgencia = tc.nextLine();
+					System.out.print("Digite o pais: ");
 					String paisAgencia = tc.nextLine();
+					System.out.print("Digite o estado: ");
 					String estadoAgencia = tc.nextLine();
+					System.out.print("Digite a cidade: ");
 					String cidadeAgencia = tc.nextLine();
+					System.out.print("Digite a rua:  ");
 					String ruaAgencia = tc.nextLine();
+					System.out.print("Digite o bairro ");
 					String bairroAgencia = tc.nextLine();
+					System.out.print("Digite o CEP: ");
 					String cepAgencia = tc.nextLine();
+					System.out.print("Digite o numero da residencia: ");
 					String numeroenderecoAgencia = tc.nextLine();
 					endereco = new Endereco(paisAgencia,estadoAgencia,cidadeAgencia,ruaAgencia,bairroAgencia,cepAgencia,numeroenderecoAgencia);
 					agencias.add(new Agencia(numeroAgencia,endereco,nomeAgencia));
 					System.out.println("Agencia criada com sucesso!");
 					break;
 				case "3":
-					System.out.println("Digite o tipo de conta");
 					boolean existe = false;
+					System.out.print("Digite o tipo de conta");
 					String tipoDeConta = tc.nextLine() ;
 					String tipoDeCliente;
 					System.out.print("Digite o CPF:");
@@ -112,7 +122,7 @@ public class Banco {
 						String numeroendereco = tc.nextLine();
 						System.out.print("Digite sua data de nascimento(xx/mm/yy): ");
 						String datadenascimento = tc.nextLine();
-						System.out.println("Digite o tipo de cliente que deseja ser (TRADICIONAL/PREMIUM)" );
+						System.out.print("Digite o tipo de cliente que deseja ser (TRADICIONAL/PREMIUM)" );
 						 tipoDeCliente = tc.nextLine();
 						 if(tipoDeCliente.equalsIgnoreCase("TRADICIONAL")) {
 								premium = false;
@@ -124,13 +134,16 @@ public class Banco {
 					}
 						 this.clientes.add(cliente);
 						 if(tipoDeConta.equalsIgnoreCase("F")) {
+							 System.out.print("Digite o valor inicial: ");
 							 double saldoInicial = tc.nextDouble();
 							 Facil e = new Facil(cliente,online,saldoInicial);
 							this.todasAsContas.add(e);
 							this.contasFacil.add(e);
 							this.online.getContas().add(e);
 						 }else {
+							 System.out.print("Digite o numero da agencia: ");
 							 String numeroDaAgencia = tc.nextLine();
+							 System.out.print("Digite o valor inicial: ");
 							 double saldoInicial = tc.nextDouble();
 							 for (Agencia agencia : agencias) {
 								if(agencia.getNumero().equalsIgnoreCase(numeroDaAgencia)) {
@@ -148,7 +161,6 @@ public class Banco {
 								}
 							}
 						 }
-					System.out.println(this.todasAsContas);
 					System.out.println("Conta criada com sucesso!");
 					break;
 				case "4":
@@ -215,6 +227,7 @@ public class Banco {
 					 String numeroContaDestino = tc.nextLine();
 					 Conta<?> contaDestino = this.acharConta(numeroAgenciaDestino, numeroContaDestino);
 					 try {
+						 System.out.print("Digite o valor: ");
 						 double valor = tc.nextDouble();
 						 contasAgencia.transferencia(contaDestino, valor);
 					 }catch(SemCargasException e) {
@@ -222,6 +235,7 @@ public class Banco {
 					 }catch(LimitedaContaException e) {
 						 System.out.println(e);
 						 try {
+							 System.out.print("Digite o valor: ");
 							 double valor = tc.nextDouble();
 							 contasAgencia.transferencia(contaDestino, valor);
 						 }catch(LimitedaContaException e1) {
@@ -229,6 +243,7 @@ public class Banco {
 						 }catch(SaldoInsuficienteException e1) {
 							 System.out.println(e1);
 							 try {
+								 System.out.print("Digite o valor: ");
 								 double valor = tc.nextDouble();
 								 contasAgencia.transferencia(contaDestino, valor);
 							 }catch(SaldoInsuficienteException e2) {
@@ -239,6 +254,7 @@ public class Banco {
 					 }catch(SaldoInsuficienteException e) {
 						 System.out.println(e);
 						 try {
+							 System.out.print("Digite o valor: ");
 							 double valor = tc.nextDouble();
 							 contasAgencia.transferencia(contaDestino, valor);
 						 }catch(SaldoInsuficienteException e1) {
@@ -248,6 +264,7 @@ public class Banco {
 					 }catch(ValorNegativoException e) {
 						 System.out.println(e);
 						 try {
+							 System.out.print("Digite o valor: ");
 							 double valor = tc.nextDouble();
 							 contasAgencia.transferencia(contaDestino, valor);
 						 }catch(ValorNegativoException e2) {
@@ -296,7 +313,7 @@ public class Banco {
 					System.out.println(contasAgencia.extrato());
 					break;
 				case "9":
-					System.out.print("Digite o tipo de relatório: ");
+					System.out.print("Digite o tipo de relatÃ³rio: ");
 					String tipoDoRelatorio= tc.nextLine();
 					switch (tipoDoRelatorio){
 					case "A":
@@ -364,10 +381,10 @@ public class Banco {
 			}while(!n.equalsIgnoreCase("-1"));
 	}
 	public String instruncoes() {
-		return "Bem vindo ao banco! Abaixo há algumas opções de movimetacões:"+"\n"+"Digite 1 para virar o mês."+"\n"
-	+"Digite 2 para cadastrar uma agência nova."+"\n"+"Digite 3 para abrir uma nova conta."+"\n"+"Digite 4 para sacar."+"\n"
-				+"Digite 5 para realizar um depósito."+"\n"+"Digite 6 para realizar uma transferencia."+
-				"\n"+"Digite 7 para solicitar um empréstimo."+"\n"+"Digite 8 para gerar um extrato."+"\n"+"Digite 9 para gera um relatório. \n";
+		return "Bem vindo ao banco! Abaixo hÃ¡ algumas opÃ§Ãµes de movimetacÃµes:"+"\n"+"Digite 1 para virar o mÃªs."+"\n"
+	+"Digite 2 para cadastrar uma agÃªncia nova."+"\n"+"Digite 3 para abrir uma nova conta."+"\n"+"Digite 4 para sacar."+"\n"
+				+"Digite 5 para realizar um depÃ³sito."+"\n"+"Digite 6 para realizar uma transferencia."+
+				"\n"+"Digite 7 para solicitar um emprÃ©stimo."+"\n"+"Digite 8 para gerar um extrato."+"\n"+"Digite 9 para gera um relatÃ³rio. \n";
 				
 	}
 	public Conta<?> acharConta(String agencia,String conta){
